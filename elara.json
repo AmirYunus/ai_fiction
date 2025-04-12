@@ -1,0 +1,73 @@
+{
+    "name": "Elara Moonweaver",
+    "gender": "Female",
+    "personality": {
+        "mbti": "INFJ",
+        "mbti_description": "Introverted, Intuitive, Feeling, Judging - The Advocate",
+        "traits": {
+            "attitudes": "Contemplative and empathetic",
+            "perception": "Highly observant of others' emotions",
+            "judgement": "Makes decisions based on values and feelings",
+            "orientation": "Seeks deeper meaning in everything"
+        }
+    },
+    "physical": {
+        "race": {
+            "name": "High Elf",
+            "description": "Ancient race known for their grace, wisdom and affinity for magic"
+        },
+        "age": {
+            "years": 142,
+            "lifespan": "Can live up to 750 years",
+            "maturity": "Young adult by elven standards"
+        },
+        "measurements": {
+            "height": 175,
+            "weight": 63,
+            "bmi": 20.6
+        },
+        "appearance": "Tall and slender with flowing silver hair, violet eyes, and delicate features. Often wears elegant robes in deep purple and silver."
+    },
+    "class": {
+        "name": "Wizard",
+        "description": "A scholar of arcane arts specializing in divination and healing magic"
+    },
+    "location": {
+        "town": "A bustling magical academy town nestled in ancient forests",
+        "country": "A prosperous kingdom known for its magical traditions", 
+        "world": "A high-fantasy realm where magic and technology coexist"
+    },
+    "mental_health_issues": {
+        "anxiety": true,
+        "depression": true,
+        "stress": true,
+        "self_esteem": true
+    },
+    "backstory": {
+        "description": "Elara is a high elf wizard who is trying to save the world from the evil forces of the dark lord. She is also trying to save herself from her own mental health issues.",
+        "goals": [
+            "Save the world from the evil forces of the dark lord",
+            "Save herself from her own mental health issues"
+        ],
+        "history": [
+            "Elara was born in a small village in the kingdom of Eldoria.",
+            "She was always a very bright and talented student.",
+            "She was always very interested in magic and the arcane arts.",
+            "She was always very interested in the arcane arts."
+        ]
+    },
+    "behaviour": [
+        "Experiences frequent panic attacks that leave her unable to cast spells",
+        "Paralyzed by social situations, often unable to speak or maintain eye contact",
+        "Constantly second-guesses every decision, leading to analysis paralysis",
+        "Deep self-loathing affects her ability to perform even basic magic",
+        "Overwhelming feelings of worthlessness despite her magical talents",
+        "Struggles with insomnia and nightmares about failing others",
+        "Often dissociates during stressful situations",
+        "Has difficulty maintaining basic self-care routines",
+        "Experiences intense anxiety about potential future catastrophes",
+        "Isolates herself due to belief that she's a burden to others"
+    ]
+}
+
+
