@@ -57,7 +57,7 @@ game_state = {
 
 # Get initial response from the AI model
 model_output = ollama.chat(
-        model='llama3.2:latest',
+        model='mattw/llama2-13b-tiefighter',
         messages=messages,
         options={'temperature': 0, 'seed': game_state['seed']},
         stream=False,
@@ -73,13 +73,13 @@ def run_action(message: str, history: list, game_state: dict) -> str:
     Process player actions and generate appropriate responses
     Args:
         message: Player's input message
-        history: Conversation history
+        history: Conversation history from Gradio (list of [user_msg, assistant_msg] pairs)
         game_state: Current state of the game
     Returns:
         String containing AI's response to player action
     """
     # Check if this is the start of the game
-    if(message == 'start game'):
+    if message.lower() == 'start game':
         return game_state['start']
 
     system_prompt = f"""You are an AI Game master. Your job is to write what happens next in a player's adventure game.
@@ -111,17 +111,22 @@ Instructions:
         {"role": "system", "content": system_prompt}
     ]
     
-    # Add conversation history to messages
-    for action in history:
-        messages.append({"role": "assistant", "content": action[0]})
-        messages.append({"role": "user", "content": action[1]})
-
+    # Add the game's start message and appropriate history
+    if len(game_state['history']) > 0 or len(history) > 0:
+        # First add the game start message
+        messages.append({"role": "assistant", "content": game_state['start']})
+        
+        # Then add conversation history from game_state
+        for user_msg, assistant_msg in game_state['history']:
+            messages.append({"role": "user", "content": user_msg})
+            messages.append({"role": "assistant", "content": assistant_msg})
+    
     # Add current message to conversation
     messages.append({"role": "user", "content": message})
 
     # Get response from AI model
     model_output = ollama.chat(
-        model='llama3.2:latest',
+        model='mattw/llama2-13b-tiefighter',
         messages=messages,
         options={'temperature': 0, 'seed': game_state['seed']},  # Use seed from game_state
         stream=False,
@@ -130,8 +135,8 @@ Instructions:
     # Process and store result
     result = model_output['message']['content']
     game_state['history'].append((message, result))
-
     return result
+
 
 def main_loop(message: str, history: list) -> str:
     """
@@ -160,7 +165,13 @@ def start_game(main_loop: callable, share: bool = False) -> None:
     # Create new Gradio interface with specified configuration
     demo = gr.ChatInterface(
         main_loop,
-        chatbot=gr.Chatbot(height=500, placeholder="Type 'start game' to begin"),
+        chatbot=gr.Chatbot(
+            height=500, 
+            placeholder="Type 'start game' to begin",
+            bubble_full_width=False,
+            show_copy_button=True,
+            render_markdown=True
+        ),
         textbox=gr.Textbox(placeholder="What do you do next?", container=False, scale=7),
         title="AI RPG",
         # description=f"You are playing as {character['name']}. {character['backstory']['description']}",

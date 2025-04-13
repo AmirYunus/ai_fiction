@@ -14,7 +14,7 @@ An interactive text-based RPG powered by Ollama and Gradio that explores themes 
 
 ### 1. Download Model from Ollama
 ```bash
-ollama pull llama3.2:latest
+ollama pull mattw/llama2-13b-tiefighter
 ```
 
 ### 2. Set Up Virtual Environment
